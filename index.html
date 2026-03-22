@@ -1,2 +1,114 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowState</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">FS</div>
+      <button class="toggle-btn" id="toggleBtn">☰</button>
+      <nav>
+        <ul>
+          <li><a href="#home">🏠 <span>Home</span></a></li>
+          <li><a href="#productivity">📘 <span>Productivity</span></a></li>
+          <li><a href="#wellness">🌿 <span>Wellness</span></a></li>
+          <li><a href="#about">ℹ️ <span>About</span></a></li>
+          <li><a href="#contact">✉️ <span>Contact</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="top-header">
+        <h1>FlowState</h1>
+        <p>Wellness, Focus and Productivity for Students</p>
+      </header>
+
+      <section class="hero" id="home">
+        <div class="hero-text">
+          <h2>Find Your Flow</h2>
+          <p>
+            A student-focused platform designed to help you manage stress,
+            improve concentration, and build better study habits.
+          </p>
+          <a href="#productivity" class="btn">Explore Tips</a>
+        </div>
+      </section>
+
+      <section class="content-section" id="productivity">
+        <h2>Focus Techniques & Productivity Tools</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Pomodoro Technique</h3>
+            <p>Break study sessions into focused intervals with short breaks.</p>
+          </div>
+          <div class="card">
+            <h3>Time Blocking</h3>
+            <p>Plan your day by assigning dedicated time to important tasks.</p>
+          </div>
+          <div class="card">
+            <h3>Deep Work</h3>
+            <p>Reduce distractions and dedicate time to high-focus tasks.</p>
+          </div>
+          <div class="card">
+            <h3>To-Do Lists</h3>
+            <p>Organize your daily tasks clearly and track your progress.</p>
+          </div>
+          <div class="card">
+            <h3>Study Planners</h3>
+            <p>Use planners to stay on top of deadlines and academic goals.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="wellness">
+        <h2>Wellness</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Stress Management</h3>
+            <p>Learn simple ways to cope with academic pressure and stress.</p>
+          </div>
+          <div class="card">
+            <h3>Mental Health Tips</h3>
+            <p>Protect your mind with practical and healthy daily habits.</p>
+          </div>
+          <div class="card">
+            <h3>Study-Life Balance</h3>
+            <p>Create routines that support both productivity and rest.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="about">
+        <h2>About FlowState</h2>
+        <p>
+          FlowState was created to support students who struggle with
+          procrastination, stress, and balancing school responsibilities.
+          It provides simple, helpful guidance in a calm and welcoming digital space.
+        </p>
+      </section>
+
+      <section class="content-section" id="contact">
+        <h2>Contact</h2>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Feedback" rows="5" required></textarea>
+          <button type="submit" class="btn">Send Feedback</button>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <p>© 2026 FlowState. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
+</body>
 </html>
