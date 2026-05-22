@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowState — Wellness</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">⚡ Flow<span>State</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="productivity.html">Productivity</a></li>
+    <li><a href="wellness.html" class="active">Wellness</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="productivity.html">Productivity</a>
+  <a href="wellness.html" class="active">Wellness</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- ─── Main Content ─── -->
+<main>
+
+  <!-- Page Hero -->
+  <div class="page-hero" style="border: 1px solid rgba(236,72,153,0.2); box-shadow: 0 8px 48px rgba(180,60,120,0.25);">
+    <img src="wellness.jpg" alt="Wellness and balance" loading="eager" />
+    <div class="page-hero-overlay" style="background: linear-gradient(to top, rgba(40,10,50,0.88) 0%, rgba(40,10,50,0.3) 60%, transparent 100%);"></div>
+    <div class="page-hero-text">
+      <h1>Wellness</h1>
+      <p style="color:rgba(249,168,212,0.88);">Your wellbeing is the foundation of every great study session.</p>
+    </div>
+  </div>
+
+  <!-- Wellness Cards -->
+  <div class="cards-grid">
+
+    <div class="card wellness">
+      <h3>Stress Management</h3>
+      <p>Learn simple, evidence-based ways to cope with academic pressure — from breathing exercises to journalling and mindful pauses.</p>
+    </div>
+
+    <div class="card wellness">
+      <h3>Mental Health Tips</h3>
+      <p>Protect your mind with practical daily habits: consistent sleep, mindful breaks, and reaching out for support when you need it.</p>
+    </div>
+
+    <div class="card wellness">
+      <h3>Study-Life Balance</h3>
+      <p>Create sustainable routines that support both productivity and genuine rest so you avoid burnout and stay energised long-term.</p>
+    </div>
+
+    <div class="card wellness">
+      <h3>Breathing Exercises</h3>
+      <p>Simple techniques like box breathing and 4-7-8 breathing can calm your nervous system before exams or stressful deadlines.</p>
+    </div>
+
+    <div class="card wellness">
+      <h3>Sleep Hygiene</h3>
+      <p>Quality sleep is your secret weapon. A consistent bedtime, dark room, and screen-free hour before bed can transform your focus.</p>
+    </div>
+
+    <div class="card wellness">
+      <h3>Movement &amp; Breaks</h3>
+      <p>Regular movement—even a short walk—boosts mood, reduces cortisol, and resets your ability to concentrate effectively.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 FlowState · Photos by <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+    hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+  }));
+</script>
+
+</body>
+</html>
