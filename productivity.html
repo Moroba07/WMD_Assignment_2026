@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowState — Productivity</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">⚡ Flow<span>State</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="productivity.html" class="active">Productivity</a></li>
+    <li><a href="wellness.html">Wellness</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="productivity.html" class="active">Productivity</a>
+  <a href="wellness.html">Wellness</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- ─── Main Content ─── -->
+<main>
+
+  <!-- Page Hero -->
+  <div class="page-hero" style="border: 1px solid rgba(180,120,255,0.2); box-shadow: 0 8px 48px rgba(120,60,200,0.25);">
+    <img src="productivity.jpg" alt="Person studying productively" loading="eager" />
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-text">
+      <h1>Focus Techniques &amp; Productivity Tools</h1>
+      <p>Proven strategies to help you get more done with less stress.</p>
+    </div>
+  </div>
+
+  <!-- Technique Cards -->
+  <div class="cards-grid">
+
+    <div class="card">
+      <h3>Pomodoro Technique</h3>
+      <p>25-minute focused intervals with short breaks to keep your brain fresh and avoid fatigue.</p>
+      <button class="btn btn-sm" onclick="openPomodoro()">Try it</button>
+    </div>
+
+    <div class="card">
+      <h3>Time Blocking</h3>
+      <p>Plan your day by assigning dedicated time slots to important tasks and protecting them from interruptions.</p>
+    </div>
+
+    <div class="card">
+      <h3>Deep Work</h3>
+      <p>Reduce distractions and dedicate uninterrupted time to high-focus tasks that move the needle.</p>
+      <button class="btn btn-sm" onclick="openDeepWork()">Try it</button>
+    </div>
+
+    <div class="card">
+      <h3>To-Do Lists</h3>
+      <p>Organise your daily tasks clearly, prioritise them, and track your progress as you go through the day.</p>
+    </div>
+
+    <div class="card">
+      <h3>Study Planners</h3>
+      <p>Use weekly planners to stay on top of deadlines, exams, and long-term academic goals effectively.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 FlowState · Photos by <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
+</footer>
+
+<!-- ─── Pomodoro Modal ─── -->
+<div class="modal-backdrop" id="pomodoroModal">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closePomodoro()">✕</button>
+    <h2>Pomodoro Timer</h2>
+
+    <div class="pomo-modes" id="pomoModes">
+      <button class="pomo-mode-btn" data-mode="focus"  onclick="switchMode('focus')">Focus</button>
+      <button class="pomo-mode-btn" data-mode="short"  onclick="switchMode('short')">Short Break</button>
+      <button class="pomo-mode-btn" data-mode="long"   onclick="switchMode('long')">Long Break</button>
+    </div>
+
+    <div style="display:flex; justify-content:center; margin-bottom:1.75rem;">
+      <svg id="pomoSvg" width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(180,120,255,0.12)" stroke-width="10"/>
+        <circle id="pomoArc" cx="100" cy="100" r="80" fill="none"
+          stroke="#a78bfa" stroke-width="10"
+          stroke-dasharray="502 502"
+          stroke-linecap="round"
+          transform="rotate(-90 100 100)"
+          style="transition: stroke-dasharray 0.5s ease, stroke 0.4s ease; filter: drop-shadow(0 0 8px #a78bfa88)"/>
+        <text id="pomoTime" x="100" y="97" text-anchor="middle" fill="#f0e6ff"
+          font-size="36" font-weight="700" font-family="monospace">25:00</text>
+        <text id="pomoLabel" x="100" y="120" text-anchor="middle" fill="#a78bfa"
+          font-size="13" font-family="sans-serif">Focus</text>
+      </svg>
+    </div>
+
+    <div class="pomo-controls">
+      <button class="pomo-ctrl-btn" id="pomoStartBtn" onclick="toggleTimer()">Start</button>
+      <button class="pomo-ctrl-btn" onclick="resetTimer()"
+        style="background:rgba(120,60,180,0.2);border:1px solid rgba(180,120,255,0.25);color:#c4b5fd;">Reset</button>
+    </div>
+    <p class="modal-hint">Click outside to close</p>
+  </div>
+</div>
+
+<!-- ─── Deep Work Modal ─── -->
+<div class="modal-backdrop" id="deepWorkModal">
+  <div class="modal-panel" style="text-align:left;">
+    <button class="modal-close" onclick="closeDeepWork()">✕</button>
+    <h2 style="text-align:center;">Deep Work Prep</h2>
+    <p style="color:rgba(196,181,253,0.6);font-size:0.85rem;text-align:center;margin-bottom:1rem;">
+      Check off each item before you start.
+    </p>
+    <div class="dw-list" id="dwList"></div>
+    <div class="dw-progress" id="dwProgress">0 / 8 ready</div>
+    <p class="modal-hint" style="text-align:center;">Click outside to close</p>
+  </div>
+</div>
+
+<script>
+/* ─── Nav hamburger ─── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+  hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+}));
+
+/* ─── Pomodoro ─── */
+const MODES = {
+  focus: { label: 'Focus',       seconds: 25*60, color: '#a78bfa' },
+  short: { label: 'Short Break', seconds:  5*60, color: '#34d399' },
+  long:  { label: 'Long Break',  seconds: 15*60, color: '#60a5fa' },
+};
+let currentMode = 'focus';
+let timeLeft = MODES.focus.seconds;
+let running = false;
+let timer = null;
+const CIRC = 2 * Math.PI * 80;
+
+function fmt(s) {
+  return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+}
+function updateDisplay() {
+  const { seconds, label, color } = MODES[currentMode];
+  const progress = timeLeft / seconds;
+  const dash = progress * CIRC;
+  document.getElementById('pomoArc').setAttribute('stroke-dasharray', `${dash} ${CIRC}`);
+  document.getElementById('pomoArc').setAttribute('stroke', color);
+  document.getElementById('pomoArc').style.filter = `drop-shadow(0 0 8px ${color}88)`;
+  document.getElementById('pomoLabel').textContent = label;
+  document.getElementById('pomoLabel').setAttribute('fill', color);
+  document.getElementById('pomoTime').textContent = fmt(timeLeft);
+  const btn = document.getElementById('pomoStartBtn');
+  if (running) {
+    btn.textContent = 'Pause';
+    btn.style.background = 'rgba(236,72,153,0.35)';
+    btn.style.border = '1px solid rgba(236,72,153,0.5)';
+    btn.style.color = '#f9a8d4';
+  } else {
+    btn.textContent = timeLeft === seconds ? 'Start' : 'Resume';
+    btn.style.background = color + '40';
+    btn.style.border = `1px solid ${color}80`;
+    btn.style.color = color;
+  }
+  // Mode buttons
+  document.querySelectorAll('.pomo-mode-btn').forEach(b => {
+    const m = b.dataset.mode;
+    const c = MODES[m].color;
+    if (m === currentMode) {
+      b.style.background = c + '30';
+      b.style.border = `1px solid ${c}`;
+      b.style.color = c;
+    } else {
+      b.style.background = 'transparent';
+      b.style.border = '1px solid rgba(180,120,255,0.2)';
+      b.style.color = '#c4b5fd';
+    }
+  });
+}
+function switchMode(m) {
+  clearInterval(timer); running = false;
+  currentMode = m; timeLeft = MODES[m].seconds;
+  updateDisplay();
+}
+function toggleTimer() {
+  running = !running;
+  if (running) {
+    timer = setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) { clearInterval(timer); running = false; timeLeft = 0; }
+      updateDisplay();
+    }, 1000);
+  } else { clearInterval(timer); }
+  updateDisplay();
+}
+function resetTimer() {
+  clearInterval(timer); running = false;
+  timeLeft = MODES[currentMode].seconds;
+  updateDisplay();
+}
+function openPomodoro() {
+  document.getElementById('pomodoroModal').classList.add('open');
+  updateDisplay();
+}
+function closePomodoro() {
+  clearInterval(timer); running = false;
+  document.getElementById('pomodoroModal').classList.remove('open');
+}
+document.getElementById('pomodoroModal').addEventListener('click', function(e) {
+  if (e.target === this) closePomodoro();
+});
+
+/* ─── Deep Work ─── */
+const DW_ITEMS = [
+  'Phone on silent & face-down',
+  'Notifications turned off',
+  'Tab blocker / distraction sites blocked',
+  'Water bottle filled',
+  'Clear desk — only essentials out',
+  'Headphones on with focus music',
+  'Goal for the session written down',
+  'Let housemates / family know',
+];
+let dwChecked = {};
+
+function buildDWList() {
+  const list = document.getElementById('dwList');
+  list.innerHTML = '';
+  DW_ITEMS.forEach((item, i) => {
+    const label = document.createElement('label');
+    label.className = 'dw-item' + (dwChecked[i] ? ' checked' : '');
+    label.innerHTML = `<input type="checkbox" ${dwChecked[i] ? 'checked' : ''} /><span>${item}</span>`;
+    label.querySelector('input').addEventListener('change', () => {
+      dwChecked[i] = !dwChecked[i];
+      buildDWList();
+    });
+    list.appendChild(label);
+  });
+  const done = Object.values(dwChecked).filter(Boolean).length;
+  const prog = document.getElementById('dwProgress');
+  prog.textContent = done === DW_ITEMS.length ? "You're ready — enter flow state!" : `${done} / ${DW_ITEMS.length} ready`;
+  prog.className = 'dw-progress' + (done === DW_ITEMS.length ? ' done' : '');
+}
+function openDeepWork() {
+  dwChecked = {};
+  buildDWList();
+  document.getElementById('deepWorkModal').classList.add('open');
+}
+function closeDeepWork() {
+  document.getElementById('deepWorkModal').classList.remove('open');
+}
+document.getElementById('deepWorkModal').addEventListener('click', function(e) {
+  if (e.target === this) closeDeepWork();
+});
+</script>
+
+</body>
+</html>
