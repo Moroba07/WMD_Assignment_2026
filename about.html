@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowState — About</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">⚡ Flow<span>State</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="productivity.html">Productivity</a></li>
+    <li><a href="wellness.html">Wellness</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="productivity.html">Productivity</a>
+  <a href="wellness.html">Wellness</a>
+  <a href="about.html" class="active">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- ─── Main Content ─── -->
+<main>
+
+  <div class="page-title">
+    <h1>About FlowState</h1>
+  </div>
+
+  <div class="glass-panel" style="max-width: 680px;">
+    <p>
+      FlowState was created to support students who struggle with procrastination,
+      stress, and balancing school responsibilities. We know how hard it can be to
+      stay focused when everything is competing for your attention.
+    </p>
+    <p>
+      We believe that good mental health and smart study habits go hand in hand.
+      FlowState brings together practical focus techniques and wellness guidance
+      in one calm, welcoming space — no overwhelming dashboards, no noise.
+    </p>
+    <p>
+      Whether you are preparing for exams, managing a busy schedule, or just trying
+      to find your rhythm — FlowState is here to help you get into the zone and stay
+      there. One session at a time.
+    </p>
+  </div>
+
+  <!-- Values section -->
+  <div style="margin-top: 2.5rem;">
+    <h2 style="font-family:'Syne',sans-serif; font-size:1.35rem; color:var(--text); margin-bottom:1.25rem; font-weight:700;">
+      What We Stand For
+    </h2>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>🧘 Calm over Chaos</h3>
+        <p>Learning should feel manageable. We design every feature to reduce anxiety, not add to it.</p>
+      </div>
+      <div class="card">
+        <h3>🔬 Evidence-Based</h3>
+        <p>Every technique we recommend is grounded in research — from cognitive science to positive psychology.</p>
+      </div>
+      <div class="card">
+        <h3>💜 Student-First</h3>
+        <p>Built specifically for students navigating academic pressure, tight budgets, and busy lives.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 FlowState · Photos by <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+    hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+  }));
+</script>
+
+</body>
+</html>
